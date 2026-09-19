@@ -17,3 +17,8 @@ def create_task(body: TaskSchema, db: Session):
             "is_completed": new_task.is_completed,
         },
     }
+
+def get_tasks(db:Session ):
+    tasks = db.query(TaskModel).all()
+    return {"status": "all tasks", "data": tasks}
+    
