@@ -10,3 +10,7 @@ class TaskResponseSchema(BaseModel):
      title : str
      description: str 
      is_completed: bool     
+
+class TaskCreateResponseSchema(BaseModel):
+     status: str
+     data: TaskResponseSchema

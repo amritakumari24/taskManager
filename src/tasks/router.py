@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, status
 task_routes = APIRouter(prefix="/tasks")
-from src.tasks.dtos import TaskSchema, TaskResponseSchema
+from src.tasks.dtos import TaskSchema, TaskCreateResponseSchema
 from src.tasks import controller
 from src.utils.db import get_db
 
 
-@task_routes.post("/create", status_code=status.HTTP_201_CREATED)
+@task_routes.post("/create", response_model=TaskCreateResponseSchema, status_code=status.HTTP_201_CREATED)
 def create_task(body: TaskSchema, db= Depends(get_db)):
 
     return controller.create_task(body, db)
