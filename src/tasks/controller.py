@@ -21,14 +21,14 @@ def create_task(body: TaskSchema, db: Session):
 
 def get_tasks(db:Session ):
     tasks = db.query(TaskModel).all()
-    return {"status": "all tasks", "data": tasks}
+    return tasks
 
 
 def get_one_task(task_id:int,db:Session):
     one_task = db.query(TaskModel).get(task_id)
     if not one_task:
         raise HTTPException(404, detail="task id is incoorect")
-    return {"status": "task fetched successfully", "data": one_task}
+    return one_task
 
 
 def update_task( body:TaskSchema,task_id:int, db:Session):
